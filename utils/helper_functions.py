@@ -202,9 +202,8 @@ def get_syncronization_stat(ssh=None, bot=None, chat_id=None):
         sntp_time =  get_ntp_time()
         dif = local - sntp_time
         sec = dif.total_seconds()
-        print(sec)
         offset = str(sec)
-        bot.send_message(chat_id, "\xF0\x9F\x98\x8E <b>Diferencia respecto al servidor NTP: %s</b> " % offset, parse_mode="Html")
+        bot.send_message(chat_id, "\xF0\x9F\x98\x8E <b>Diferencia respecto al servidor NTP: %s seg</b> " % offset, parse_mode="Html")
     except Exception, e:
         print(e.message)
         bot.send_message(chat_id, "\xF0\x9F\x92\xA5 \xF0\x9F\x98\xB5 <b>Ocurrio un inconveniente "
