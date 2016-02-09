@@ -29,7 +29,9 @@ def take_snapshot(bot=None, chat_id=None, remote=None, ssh_user=None, ssh_passwo
             err = stderr.channel.recv_stderr(1024)
             if err:
                 print(err)
-                if err != "kbuildsycoca running...":
+                if err == "kbuildsycoca running...":
+                    pass
+                else:
                     bot.send_message(chat_id, "	\xF0\x9F\x98\x94 \n<b>Algo inesperado paso, la descripcion es: %s </b>" % err, parse_mode="Html")
             else:
                 bot.send_message(chat_id, "\xF0\x9F\x98\x8E \n<b>He enviado la orden verifica por favor</b>", parse_mode="Html")
