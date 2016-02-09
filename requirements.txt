@@ -1,0 +1,2 @@
+paramiko==1.10.1
+pyTelegramBotAPI==1.4.1
