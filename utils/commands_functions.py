@@ -10,8 +10,8 @@ def take_snapshot(bot=None, chat_id=None, remote=None, ssh_user=None, ssh_passwo
         try:
             bot.send_message(chat_id, "He enviado la orden...", parse_mode="Html")
             channel = ssh.invoke_shell()
-            stdin = ssh.makefile('wb')
-            stdout = ssh.makefile('rb')
+            stdin = channel.makefile('wb')
+            stdout = channel.makefile('rb')
 
             stdin.write('''
             export DISPLAY=:0
