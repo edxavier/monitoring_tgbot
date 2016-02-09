@@ -1,0 +1,4 @@
+Hola, puedo ayudarte a obtener informacion relacionada a los recursos del sistema operativo
+de las estaciones de trabajo y servidores de Aircon2100.
+
+Tambien puedo ejecutar ciertas ordenes por ti, para ver los comandos disponibles escribe /help

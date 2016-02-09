@@ -1,0 +1,4 @@
+OK a continuacion puedes ver la lista de comandos para que puedas indicarme que hacer.
+
+/sysinfo - [ /sysinfo host ] obten informacion sobre host que me indiques
+/reboot -  [ /reboot host ] reinicia el sistema operativo host que me indiques
