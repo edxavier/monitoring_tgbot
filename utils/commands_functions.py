@@ -8,7 +8,8 @@ def take_snapshot(bot=None, chat_id=None, remote=None, ssh_user=None, ssh_passwo
     ssh, established = do_ssh(bot, chat_id, remote, ssh_user, ssh_password)
     if established:
         try:
-            ssh_stdin, stdout, stderr = ssh.exec_command("/root/tg_snapshot.sh &")
+            bot.send_message(chat_id, "He enviado la orden...", parse_mode="Html")
+            ssh_stdin, stdout, stderr = ssh.exec_command("/root/tg_snapshot.sh")
             #print stdout.channel.recv_exit_status()
             err = stderr.channel.recv_stderr(1024)
             if err:
