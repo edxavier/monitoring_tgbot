@@ -29,6 +29,7 @@ def take_snapshot(bot=None, chat_id=None, remote=None, ssh_user=None, ssh_passwo
             err = stderr.channel.recv_stderr(1024)
             if err:
                 print(err)
+                print(type(err))
                 if err == "kbuildsycoca running...":
                     pass
                 else:
