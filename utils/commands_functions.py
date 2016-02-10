@@ -26,7 +26,8 @@ def take_snapshot(bot=None, msg=None, remote=None, ssh_user=None, ssh_password=N
             stdout.close()
             stdin.close()
             """
-            #user = msg.chat.first_name +" "+msg.chat.last_name
+            print(user)
+            print(type(user))
             if user is None:
                 user = "... no se pudo obtener el nombre"
             print(user)
