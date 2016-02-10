@@ -22,8 +22,8 @@ def help(msg):
     large_text = open("help.txt", "rb").read()
     splitted_text = util.split_string(large_text, 3000)
     print(msg)
-    #for text in splitted_text:
-     #   bot.send_message(chat_id, text)
+    for text in splitted_text:
+        bot.send_message(chat_id, text)
 
 
 @bot.message_handler(commands=['ping'])

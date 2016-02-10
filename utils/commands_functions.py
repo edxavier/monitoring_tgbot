@@ -38,7 +38,8 @@ def take_snapshot(bot=None, msg=None, remote=None, ssh_user=None, ssh_password=N
             else:
                 bot.send_message(chat_id, "\xF0\x9F\x98\x8E \n<b>Captura de pantalla finalizada en %s</b>" % remote, parse_mode="Html")
 
-        except:
+        except Exception, e:
+            print(e.message)
             bot.send_message(chat_id, "\xF0\x9F\x92\xA5 \xF0\x9F\x98\xB5 <b>Ocurrio un inconveniente "
                                           "al solicitar la ejecucion de ksnapshot</b>", parse_mode="Html")
         ssh.close()
