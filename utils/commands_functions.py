@@ -6,6 +6,7 @@ from utils.helper_functions import do_ssh
 
 def take_snapshot(bot=None, msg=None, remote=None, ssh_user=None, ssh_password=None):
     chat_id = msg.chat.id
+    user = msg.chat.first_name +" "+msg.chat.last_name
     ssh, established = do_ssh(bot, chat_id, remote, ssh_user, ssh_password)
     if established:
         try:
@@ -26,7 +27,9 @@ def take_snapshot(bot=None, msg=None, remote=None, ssh_user=None, ssh_password=N
             stdin.close()
             """
             #user = msg.chat.first_name +" "+msg.chat.last_name
-            notify = "Se ha jecutado una captura de pantalla en "+ remote+" a peticion de "
+            if user is None:
+                user = "... no se pudo obtener el nombre"
+            notify = "Se ha jecutado una captura de pantalla en "+ remote+" a peticion de " + user
             broadcast_user_action(bot, chat_id, notify)
             ssh_stdin, stdout, stderr = ssh.exec_command("export DISPLAY=:0 \n /usr/bin/ksnapshot")
             #print stdout.channel.recv_exit_status()
