@@ -61,6 +61,17 @@ def ksnapshot(msg):
                                   "Intentalo nuevamente indicando hostname o IP despues del comando")
 
 
+@bot.message_handler(commands=['reboot'])
+def reboot(msg):
+    chat_id = msg.chat.id
+    cmd_args = str(msg.text).split(" ")[1:]
+    if len(cmd_args) > 0:
+        reboot_host(bot,msg, cmd_args[0], ssh_user="server", ssh_password="server")
+    else:
+        bot.send_message(chat_id, "\xF0\x9F\x98\x8F OK, necesito que me indiques de cual host deseas obtener informacion. "
+                                  "Intentalo nuevamente indicando hostname o IP despues del comando")
+
+
 
 if __name__ == '__main__':
     max_loop = 3

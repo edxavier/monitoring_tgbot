@@ -11,21 +11,6 @@ def take_snapshot(bot=None, msg=None, remote=None, ssh_user=None, ssh_password=N
     if established:
         try:
             bot.send_message(chat_id, "He enviado la orden...", parse_mode="Html")
-            """channel = ssh.invoke_shell()
-            stdin = channel.makefile('wb')
-            stdout = channel.makefile('rb')
-
-            stdin.write('''
-            export DISPLAY=:0
-            /usr/bin/ksnapshot
-            exit
-            ''')
-
-            print stdout.read()
-
-            stdout.close()
-            stdin.close()
-            """
 
             if user is None:
                 user = "... no se pudo obtener el nombre"
@@ -52,8 +37,43 @@ def take_snapshot(bot=None, msg=None, remote=None, ssh_user=None, ssh_password=N
 
 
 
-def broadcast_user_action(bot=None, chat_id=None, info_msg=""):
-    bot.send_message(chat_id, " \xF0\x9F\x91\xBC <b>No es que me guste ser chismoso, pero debo hacer publica la orden que me has solicitado para hacerla del conocimiento "
-                              "de los integrantes del canal de Estacion Radar Managua</b>", parse_mode="Html")
+def reboot_host(bot=None, msg=None, remote=None, ssh_user=None, ssh_password=None):
+    chat_id = msg.chat.id
+    user = msg.chat.first_name +" "+msg.chat.last_name
+    ssh, established = do_ssh(bot, chat_id, remote, ssh_user, ssh_password)
+    if established:
+        try:
+            bot.send_message(chat_id, "He enviado la orden...", parse_mode="Html")
 
+            if user is None:
+                user = "... no se pudo obtener el nombre"
+            notify = "Se ha mandado a reiniciar "+ remote+" a peticion de " + str(user)
+            broadcast_user_action(bot, chat_id, notify)
+            ssh_stdin, stdout, stderr = ssh.exec_command("init 6")
+            #print stdout.channel.recv_exit_status()
+            err = stderr.channel.recv_stderr(1024)
+            if err:
+                if err.startswith('kbuildsycoca running...'):
+                    pass
+                else:
+                    bot.send_message(chat_id, "	\xF0\x9F\x98\x94 \n %s" % err, parse_mode="Html")
+            else:
+                bot.send_message(chat_id, "\xF0\x9F\x98\x8E \n<b>%s se esta o se ha reiniciando</b>" % remote, parse_mode="Html")
+
+        except Exception, e:
+            print(e.message)
+            bot.send_message(chat_id, "\xF0\x9F\x92\xA5 \xF0\x9F\x98\xB5 <b>Ocurrio un inconveniente "
+                                          "al solicitar el reinicio</b>", parse_mode="Html")
+        ssh.close()
+    else:
+        bot.send_message(chat_id, "	\xF0\x9F\x98\x94 \xF0\x9F\x92\x94 <i>Hijole!, no logre conectar con %s" % remote, parse_mode="Html" )
+
+
+
+
+
+
+
+def broadcast_user_action(bot=None, chat_id=None, info_msg=""):
+    bot.send_message(chat_id, " \xF0\x9F\x91\xBC <b>No es que me guste el chisme, pero debo notificar esta accion en el canal @stecnica</b>", parse_mode="Html")
     bot.send_message('@stecnica', "\xF0\x9F\x93\xA2 \xF0\x9F\x91\xBC <b> %s </b>" % info_msg, parse_mode="Html")
