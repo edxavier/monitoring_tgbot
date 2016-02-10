@@ -21,8 +21,9 @@ def help(msg):
     chat_id = msg.chat.id
     large_text = open("help.txt", "rb").read()
     splitted_text = util.split_string(large_text, 3000)
-    for text in splitted_text:
-        bot.send_message(chat_id, text)
+    print(msg)
+    #for text in splitted_text:
+     #   bot.send_message(chat_id, text)
 
 
 @bot.message_handler(commands=['ping'])
@@ -54,7 +55,7 @@ def ksnapshot(msg):
     chat_id = msg.chat.id
     cmd_args = str(msg.text).split(" ")[1:]
     if len(cmd_args) > 0:
-        take_snapshot(bot, chat_id, cmd_args[0], ssh_user="server", ssh_password="server")
+        take_snapshot(bot,msg, cmd_args[0], ssh_user="server", ssh_password="server")
     else:
         bot.send_message(chat_id, "\xF0\x9F\x98\x8F OK, necesito que me indiques de cual host deseas obtener informacion. "
                                   "Intentalo nuevamente indicando hostname o IP despues del comando")
