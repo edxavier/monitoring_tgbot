@@ -56,7 +56,7 @@ def take_snapshot(bot=None, msg=None, remote=None, ssh_user=None, ssh_password=N
 
 
 def broadcast_user_action(bot=None, chat_id=None, info_msg=""):
-    bot.send_message(chat_id, "<b>No es que me guste ser chismoso, pero debo hacer publica la orden que me has solicitado para hacerla del conocimiento"
+    bot.send_message(chat_id, " \xF0\x9F\x91\xBC <b>No es que me guste ser chismoso, pero debo hacer publica la orden que me has solicitado para hacerla del conocimiento "
                               "de los integrantes del canal de Estacion Radar Managua</b>", parse_mode="Html")
 
-    bot.send_message('@stecnica', "\xF0\x9F\x93\xA2 <b> %s </b>" % info_msg, parse_mode="Html")
+    bot.send_message('@stecnica', "\xF0\x9F\x93\xA2 \xF0\x9F\x91\xBC <b> %s </b>" % info_msg, parse_mode="Html")
