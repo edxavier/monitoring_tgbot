@@ -31,7 +31,7 @@ def take_snapshot(bot=None, msg=None, remote=None, ssh_user=None, ssh_password=N
                 user = "... no se pudo obtener el nombre"
             print(user)
             print(type(user))
-            notify = "Se ha jecutado una captura de pantalla en "+ remote+" a peticion de " + user
+            notify = "Se ha jecutado una captura de pantalla en "+ remote+" a peticion de " + str(user)
             broadcast_user_action(bot, chat_id, notify)
             ssh_stdin, stdout, stderr = ssh.exec_command("export DISPLAY=:0 \n /usr/bin/ksnapshot")
             #print stdout.channel.recv_exit_status()
