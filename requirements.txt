@@ -1,2 +1,4 @@
 paramiko==1.10.1
 pyTelegramBotAPI==1.4.1
+python-telegram-bot==3.2.0
+telepot==6.3
