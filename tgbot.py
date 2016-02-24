@@ -5,7 +5,7 @@ from utils.helper_functions import *
 from utils.commands_functions import *
 from telebot import util
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 updater = Updater(token='161535249:AAHEazwEfyCwA7MvHz-XktNyMJojXmgHkf4')
 dispatcher = updater.dispatcher
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -83,17 +83,17 @@ def reboot(bot, msg):
 
 
 
+if __name__ == '__main__':
+    dispatcher.addTelegramMessageHandler(echo)
+    dispatcher.addUnknownTelegramCommandHandler(unknown)
+    dispatcher.addTelegramCommandHandler('start', start)
+    dispatcher.addTelegramCommandHandler('help', help)
+    dispatcher.addTelegramCommandHandler('sysinfo', system_info)
+    dispatcher.addTelegramCommandHandler('snapshot', ksnapshot)
+    dispatcher.addTelegramCommandHandler('ping', ping)
+    dispatcher.addTelegramCommandHandler('reboot', reboot)
 
-dispatcher.addTelegramMessageHandler(echo)
-dispatcher.addUnknownTelegramCommandHandler(unknown)
-dispatcher.addTelegramCommandHandler('start', start)
-dispatcher.addTelegramCommandHandler('help', help)
-dispatcher.addTelegramCommandHandler('sysinfo', system_info)
-dispatcher.addTelegramCommandHandler('snapshot', ksnapshot)
-dispatcher.addTelegramCommandHandler('ping', ping)
-dispatcher.addTelegramCommandHandler('reboot', reboot)
-
-updater.start_polling()
+    updater.start_polling()
 
 
 
