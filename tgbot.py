@@ -55,7 +55,7 @@ def system_info(bot, msg):
     chat_id = msg.message.chat.id
     cmd_args = str(msg.message.text).split(" ")[1:]
     if len(cmd_args) > 0:
-        get_sys_info(bot, chat_id, cmd_args[0], ssh_user="server", ssh_password="server")
+        get_sys_info(bot, chat_id, cmd_args[0], ssh_user="root", ssh_password="root")
     else:
         bot.sendMessage(chat_id, "\xF0\x9F\x98\x8F OK, necesito que me indiques de cual host deseas obtener informacion. "
                                   "Intentalo nuevamente indicando hostname o IP despues del comando")
@@ -65,7 +65,7 @@ def ksnapshot(bot, msg):
     chat_id = msg.message.chat.id
     cmd_args = str(msg.message.text).split(" ")[1:]
     if len(cmd_args) > 0:
-        take_snapshot(bot,msg, cmd_args[0], ssh_user="server", ssh_password="server")
+        take_snapshot(bot,msg, cmd_args[0], ssh_user="mana", ssh_password="mana")
     else:
         bot.sendMessage(chat_id, "\xF0\x9F\x98\x8F OK, necesito que me indiques de cual host deseas obtener informacion. "
                                   "Intentalo nuevamente indicando hostname o IP despues del comando")
@@ -76,7 +76,7 @@ def reboot(bot, msg):
     chat_id = msg.message.chat.id
     cmd_args = str(msg.message.text).split(" ")[1:]
     if len(cmd_args) > 0:
-        reboot_host(bot,msg, cmd_args[0], ssh_user="server", ssh_password="server")
+        reboot_host(bot,msg, cmd_args[0], ssh_user="root", ssh_password="root")
     else:
         bot.sendMessage(chat_id, "\xF0\x9F\x98\x8F OK, necesito que me indiques de cual host deseas obtener informacion. "
                                   "Intentalo nuevamente indicando hostname o IP despues del comando")
